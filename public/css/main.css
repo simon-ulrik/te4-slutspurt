@@ -1,0 +1,8 @@
+.nav-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-list-item {
+  margin-left: 2%;
+}

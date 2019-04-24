@@ -1,0 +1,10 @@
+version: "3"
+services:
+ postgresql:
+  image: "postgres:10"
+  ports: ["5432:5432"]
+  restart: always
+  environment:
+   POSTGRES_USER: security
+   POSTGRES_PASSWORD: qwerty
+   POSTGRES_DB: simons_super_secure_db

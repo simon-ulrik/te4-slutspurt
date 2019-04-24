@@ -1,0 +1,27 @@
+h1 #{@fruit[:name]}
+/ button onclick='editFruit("name", #{@fruit.to_json})' edit name
+br
+
+h2 rating: #{@fruit[:rating]}
+button onclick='editFruit("rating", #{@fruit.to_json})' edit rating
+br
+
+h2 description:
+p#description-text #{@fruit[:description]}
+form#description-form action="/fruits/#{params[:id]}" method="POST"
+  input type="text" name="new_value" value="#{@fruit[:description]}"
+  / imput type="hiden" name="feild" value="description" /
+  input name="_method" type="hidden" value="PUT" /
+  button type="submit" accept
+  button cancel
+
+button#description-edit onclick='toggleEdit("description")' edit
+
+br
+br
+br
+br
+form action="/fruits/#{params[:id]}" method="POST" 
+  input name="_method" type="hidden" value="DELETE" /
+  button type="submit"  delete
+

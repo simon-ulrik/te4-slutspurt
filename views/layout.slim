@@ -1,0 +1,22 @@
+
+html
+    head
+        link rel="stylesheet" type="text/css" href="/css/main.css"
+        script src="https://unpkg.com/axios/dist/axios.min.js"
+        script language="JavaScript" type="text/javascript" src="/js/main.js"
+        meta charset="utf-8"
+    body
+      -if @title != nil
+        h1 #{@title}
+      -else
+        h1 No Title
+      nav
+        ul.nav-list
+          li.nav-list-item
+            a href="/" Home
+          li.nav-list-item
+            a href="/about" About
+          li.nav-list-item
+            a href="/fruits" Fruits
+      .app
+        == yield
