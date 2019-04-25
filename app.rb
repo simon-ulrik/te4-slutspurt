@@ -8,42 +8,48 @@ require 'sequel'
 class App < Sinatra::Base
   enable :sessions, :method_override
 
+  before do
+    @titles_lang = JSON.parse(File.read('./titles_lang.json'))
+  end
+
   get '/' do
-    @title = 'Home'
-    slim :home
+    redirect '/eng/'
   end
 
-  get '/about' do
-    @title = 'About'
-    slim :about
+  get '/:lang/' do
+    session[:lang] = params[:lang]
+    @title = @titles_lang['home'][params[:lang]].capitalize
+    slim :"#{params[:lang]}_home"
   end
 
-  get '/fruits' do
-    @title = 'Fruits'
+  get '/:lang/about' do
+    session[:lang] = params[:lang]
+    @title = @titles_lang['about'][params[:lang]].capitalize
+    slim :"#{params[:lang]}_about"
+  end
+
+  get '/:lang/fruits' do
+    session[:lang] = params[:lang]
     @fruits = Fruit.get_all
-    slim :fruits
+    @title = @titles_lang['fruits'][params[:lang]].capitalize
+    slim :"#{params[:lang]}_fruits"
   end
 
-  get '/fruits/:id' do
+  get '/:lang/fruits/:id' do
+    session[:lang] = params[:lang]
     @fruit = Fruit.get(id: params[:id])
-    if !@fruit.nil?
-      @title = "Fruit ##{@fruit[:id]}"
-      slim :fruit
-    else
-      slim :not_found
-    end
+    @title = "#{@titles_lang['fruit'][params[:lang]].capitalize} ##{params[:id]}"
+    slim :"#{@fruit.nil? ? "#{params[:lang]}_not_found" : "#{params[:lang]}_fruit"}"
   end
 
   delete '/fruits/:id' do
     Fruit.delete(id: params[:id])
-    redirect '/fruits'
+    redirect "/#{session[:lang]}/fruits"
   end
 
   put '/fruits/:id' do
-    p params
-    Fruit.update(id: params[:id], feild: params[:feild], new_value: params[:new_value])
-    redirect "/fruits/#{params[:id]}"
+    Fruit.update(id: params[:id], "#{params[:feild]}": params[:new_value])
   end
 
-  not_found { slim :not_found }
+  not_found { slim :"#{session[:lang]}_not_found" }
 end

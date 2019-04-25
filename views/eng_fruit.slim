@@ -1,0 +1,20 @@
+h1 #{@fruit[:name]}
+button onclick='editFruit("name", #{@fruit.to_json})' edit name
+br
+
+h2 rating: #{@fruit[:rating]}
+button onclick='editFruit("rating", #{@fruit.to_json})' edit rating
+br
+
+h2 description:
+button onclick='editFruit("description", #{@fruit.to_json})' edit description
+p #{@fruit[:description]}
+
+br
+br
+br
+br
+form action="/fruits/#{params[:id]}" method="POST" 
+  input name="_method" type="hidden" value="DELETE" /
+  button type="submit"  delete
+

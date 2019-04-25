@@ -21,15 +21,13 @@ class Fruit
 
   def self.update(update_hash)
     find_column = update_hash.keys[0]
-    find_value = update_hash[find_column]
-
+    change_column = update_hash.keys[1]
     db.fetch(
-      'UPDATE fruits SET rating = ? WHERE ? = ?',
-      # update_hash[:feild].to_s,
-      # update_hash[:new_value].to_s,
-      update_hash[:new_value],
+      'UPDATE fruits SET ? = ? WHERE ? = ?',
+      change_column,
+      update_hash[change_column],
       find_column,
-      find_value
+      update_hash[find_column]
     )[:@db]
   end
 

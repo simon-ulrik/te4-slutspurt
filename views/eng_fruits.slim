@@ -1,0 +1,7 @@
+- if @fruits.empty?
+  h2 no fruits :(
+- else
+  ul
+    - for fruit in @fruits
+      li
+        a href="/eng/fruits/#{fruit[:id]}" #{fruit[:name]}

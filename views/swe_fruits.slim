@@ -1,0 +1,7 @@
+- if @fruits.empty?
+  h2 inga frukter :(
+- else
+  ul
+    - for fruit in @fruits
+      li
+        a href="/#{session[:lang]}/fruits/#{fruit[:id]}" #{fruit[:name]}

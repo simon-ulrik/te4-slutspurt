@@ -5,20 +5,20 @@ function toggleEdit(feild) {
 
 function editFruit(feild, fruit) {
   const originalValue = fruit[feild]
-  let newValue = prompt(`Editing ${feild}`, `${originalValue}`)
-  console.log(newValue)
+  const newValue = prompt(`Editing ${feild}`, `${originalValue}`)
   
-  const data = {
-    feild: feild,
-    new_value: newValue
-  }
+  if (newValue === null || newValue === originalValue) { return null }
+
+  let formData = new FormData()
+  formData.append("feild", feild)
+  formData.append("new_value", newValue)
 
   fetch( `/fruits/${fruit.id}`, {
     method: "PUT",
-    body: data
+    body: formData
   })
-  .then( res => {
+  .then(res => {
+    location.reload(true)
     console.log(res)
   })
-  
 }

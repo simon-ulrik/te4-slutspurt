@@ -1,0 +1,18 @@
+{
+  "home": {
+    "eng": "home",
+    "swe": "hem"
+  },
+  "about": {
+    "eng": "about",
+    "swe": "om hemsidan"
+  },
+  "fruit": {
+    "eng": "fruit",
+    "swe": "frukt"
+  },
+  "fruits": {
+    "eng": "fruits",
+    "swe": "frukter"
+  }
+}

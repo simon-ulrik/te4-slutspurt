@@ -6,17 +6,17 @@ html
         script language="JavaScript" type="text/javascript" src="/js/main.js"
         meta charset="utf-8"
     body
-      -if @title != nil
+      - if @title != nil
         h1 #{@title}
-      -else
-        h1 No Title
+      - else
+        h1 Error
       nav
         ul.nav-list
           li.nav-list-item
-            a href="/" Home
+            a href="/#{params[:lang]}/" #{@titles_lang['home'][params[:lang]].capitalize}
           li.nav-list-item
-            a href="/about" About
+            a href="/#{params[:lang]}/about" #{@titles_lang['about'][params[:lang]].capitalize}
           li.nav-list-item
-            a href="/fruits" Fruits
+            a href="/#{params[:lang]}/fruits" #{@titles_lang['fruits'][params[:lang]].capitalize}
       .app
         == yield

@@ -1,0 +1,19 @@
+h1 #{@fruit[:name]}
+button onclick='editFruit("name", #{@fruit.to_json})' redigera namn
+br
+
+h2 betyg: #{@fruit[:rating]}
+button onclick='editFruit("rating", #{@fruit.to_json})' redigera betyg
+br
+
+h2 beskrivning:
+button onclick='editFruit("description", #{@fruit.to_json})' redigera beskrivning
+p #{@fruit[:description]}
+
+br
+br
+br
+br
+form action="/fruits/#{params[:id]}" method="POST" 
+  input name="_method" type="hidden" value="DELETE" /
+  button type="submit" ta bort
