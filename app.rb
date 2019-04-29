@@ -13,10 +13,10 @@ class App < Sinatra::Base
   end
 
   get '/' do
-    redirect '/eng/'
+    redirect '/eng'
   end
 
-  get '/:lang/' do
+  get '/:lang' do
     session[:lang] = params[:lang]
     @title = @titles_lang['home'][params[:lang]].capitalize
     slim :"#{params[:lang]}_home"
@@ -33,6 +33,10 @@ class App < Sinatra::Base
     @fruits = Fruit.get_all
     @title = @titles_lang['fruits'][params[:lang]].capitalize
     slim :"#{params[:lang]}_fruits"
+  end
+
+  post '/fruits' do
+    Fruit.create(name: params[:name], description: params[:description], rating: params[:rating])
   end
 
   get '/:lang/fruits/:id' do
