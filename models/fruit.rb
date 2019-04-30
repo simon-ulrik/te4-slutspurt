@@ -1,8 +1,7 @@
 class Fruit
-
   # Connects to the database
   #
-  # @return db [object]
+  # @return db [Object]
   def self.db
     @db = Sequel.connect('postgres://security:qwerty@0.0.0.0:5432/simons_super_secure_db')
   end
@@ -32,11 +31,11 @@ class Fruit
   # @param [Hash] =>
   #  exaple:
   #   Fruit.delete(id: 1) #=> nil
-  # @return [nil]
+  # @return [Object]
   def self.delete(delete_hash)
     column_name = delete_hash.keys[0]
     value = delete_hash[column_name]
-    db.fetch('DELETE FROM fruits WHERE ? = ?', column_name, value)[:@db]
+    db.fetch('DELETE FROM fruits WHERE ? = ?', column_name, value)
   end
 
   # Updates a fruit specified by a column and a value depending on a specified column and a value
@@ -44,7 +43,7 @@ class Fruit
   # @param [Hash] =>
   #  exaple:
   #   Fruit.update(id: 1, rating: 7.5) #=> nil
-  # @return [nil]
+  # @return [Object]
   def self.update(update_hash)
     find_column = update_hash.keys[0]
     change_column = update_hash.keys[1]
@@ -54,7 +53,7 @@ class Fruit
       update_hash[change_column],
       find_column,
       update_hash[find_column]
-    )[:@db]
+    )
   end
 
   # Creates a fruit specified by columns and values
@@ -62,7 +61,7 @@ class Fruit
   # @param [Hash] =>
   #  exaple:
   #   Fruit.create(name: "Åpple", description: "it's an Åpple", rating: "10.0") #=> nil
-  # @return [nil]
+  # @return [Object]
   def self.create(new_hash)
     db.fetch(
       'INSERT INTO fruits(name, description, rating) VALUES (?, ?, ?)',
