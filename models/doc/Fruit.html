@@ -302,7 +302,7 @@ column and a value.</p>
         <div class='inline'>
 <p>exaple:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='const'><span class='object_link'><a href="" title="Fruit (class)">Fruit</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Åpple</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>description:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>it&#39;s an Åpple</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>rating:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>10.0</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; nil
+<pre class="code ruby"><code class="ruby"><span class='const'><span class='object_link'><a href="" title="Fruit (class)">Fruit</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Åpple</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>description:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>it&#39;s an Åpple</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>rating:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>10.0</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; #&lt;Sequel::Postgres::Dataset: &quot;INSERT INTO fruits(name, description, rating) VALUES (&#39;Åpple&#39;, &#39;it&#39;s an Åpple&#39;, &#39;10.0&#39;)&quot;&gt;
 </span></code></pre>
 </div>
       
@@ -343,7 +343,7 @@ column and a value.</p>
       <pre class="code"><span class="info file"># File 'fruit.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_new_hash'>new_hash</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span>
+  <span class='id identifier rubyid_p'>p</span> <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span>
     <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>INSERT INTO fruits(name, description, rating) VALUES (?, ?, ?)</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
     <span class='id identifier rubyid_new_hash'>new_hash</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='comma'>,</span>
     <span class='id identifier rubyid_new_hash'>new_hash</span><span class='lbracket'>[</span><span class='symbol'>:description</span><span class='rbracket'>]</span><span class='comma'>,</span>
@@ -430,7 +430,7 @@ column and a value.</p>
         <div class='inline'>
 <p>exaple:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='const'><span class='object_link'><a href="" title="Fruit (class)">Fruit</a></span></span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='comment'>#=&gt; nil
+<pre class="code ruby"><code class="ruby"><span class='const'><span class='object_link'><a href="" title="Fruit (class)">Fruit</a></span></span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='comment'>#=&gt; #&lt;Sequel::Postgres::Dataset: &quot;DELETE FROM fruits WHERE \&quot;id\&quot; = &#39;1&#39;&quot;&gt;
 </span></code></pre>
 </div>
       
@@ -470,7 +470,7 @@ column and a value.</p>
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_delete_hash'>delete_hash</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_column_name'>column_name</span> <span class='op'>=</span> <span class='id identifier rubyid_delete_hash'>delete_hash</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_delete_hash'>delete_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_column_name'>column_name</span><span class='rbracket'>]</span>
-  <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>DELETE FROM fruits WHERE ? = ?</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_column_name'>column_name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_p'>p</span> <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>DELETE FROM fruits WHERE ? = ?</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_column_name'>column_name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -648,7 +648,7 @@ column and a value</p>
         <div class='inline'>
 <p>exaple:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='const'><span class='object_link'><a href="" title="Fruit (class)">Fruit</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>rating:</span> <span class='float'>7.5</span><span class='rparen'>)</span> <span class='comment'>#=&gt; nil
+<pre class="code ruby"><code class="ruby"><span class='const'><span class='object_link'><a href="" title="Fruit (class)">Fruit</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>rating:</span> <span class='float'>7.5</span><span class='rparen'>)</span> <span class='comment'>#=&gt; #&lt;Sequel::Postgres::Dataset: &quot;UPDATE fruits SET \&quot;rating\&quot; = &#39;7.5&#39; WHERE \&quot;id\&quot; = &#39;1&#39;&quot;&gt;
 </span></code></pre>
 </div>
       
@@ -694,7 +694,7 @@ column and a value</p>
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_update_hash'>update_hash</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_find_column'>find_column</span> <span class='op'>=</span> <span class='id identifier rubyid_update_hash'>update_hash</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_change_column'>change_column</span> <span class='op'>=</span> <span class='id identifier rubyid_update_hash'>update_hash</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
-  <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span>
+  <span class='id identifier rubyid_p'>p</span> <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span>
     <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>UPDATE fruits SET ? = ? WHERE ? = ?</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
     <span class='id identifier rubyid_change_column'>change_column</span><span class='comma'>,</span>
     <span class='id identifier rubyid_update_hash'>update_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_change_column'>change_column</span><span class='rbracket'>]</span><span class='comma'>,</span>
@@ -712,7 +712,7 @@ column and a value</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Apr 30 11:54:30 2019 by
+  Generated on Tue Apr 30 11:59:56 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.19 (ruby-2.5.1).
 </div>

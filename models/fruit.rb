@@ -30,24 +30,24 @@ class Fruit
   #
   # @param [Hash] =>
   #  exaple:
-  #   Fruit.delete(id: 1) #=> nil
+  #   Fruit.delete(id: 1) #=> #<Sequel::Postgres::Dataset: "DELETE FROM fruits WHERE \"id\" = '1'">
   # @return [Object]
   def self.delete(delete_hash)
     column_name = delete_hash.keys[0]
     value = delete_hash[column_name]
-    db.fetch('DELETE FROM fruits WHERE ? = ?', column_name, value)
+    p db.fetch('DELETE FROM fruits WHERE ? = ?', column_name, value)
   end
 
   # Updates a fruit specified by a column and a value depending on a specified column and a value
   #
   # @param [Hash] =>
   #  exaple:
-  #   Fruit.update(id: 1, rating: 7.5) #=> nil
+  #   Fruit.update(id: 1, rating: 7.5) #=> #<Sequel::Postgres::Dataset: "UPDATE fruits SET \"rating\" = '7.5' WHERE \"id\" = '1'">
   # @return [Object]
   def self.update(update_hash)
     find_column = update_hash.keys[0]
     change_column = update_hash.keys[1]
-    db.fetch(
+    p db.fetch(
       'UPDATE fruits SET ? = ? WHERE ? = ?',
       change_column,
       update_hash[change_column],
@@ -60,10 +60,10 @@ class Fruit
   #
   # @param [Hash] =>
   #  exaple:
-  #   Fruit.create(name: "Åpple", description: "it's an Åpple", rating: "10.0") #=> nil
+  #   Fruit.create(name: "Åpple", description: "it's an Åpple", rating: "10.0") #=> #<Sequel::Postgres::Dataset: "INSERT INTO fruits(name, description, rating) VALUES ('Åpple', 'it's an Åpple', '10.0')">
   # @return [Object]
   def self.create(new_hash)
-    db.fetch(
+    p db.fetch(
       'INSERT INTO fruits(name, description, rating) VALUES (?, ?, ?)',
       new_hash[:name],
       new_hash[:description],
